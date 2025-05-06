@@ -1,6 +1,7 @@
 package Arrays;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TwoSum {
@@ -20,6 +21,18 @@ public class TwoSum {
         return null;
     }
 
+    public static int[] simplifiedTwoSum(int[] nums,int target) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++) {
+            int difference = target - nums[i];
+            if(map.containsKey(difference)){
+                return new int[]{map.get(difference),i};
+            }
+            map.put(nums[i],i);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Provide size of array");
@@ -33,7 +46,7 @@ public class TwoSum {
         System.out.print("Provide target ");
         int target;
         target = scanner.nextInt();
-            int[] result = twoSum(nums, target);
+            int[] result = simplifiedTwoSum(nums, target);
             if(result!=null)
                 System.out.println("target indices in "+ Arrays.toString(result));
             else
